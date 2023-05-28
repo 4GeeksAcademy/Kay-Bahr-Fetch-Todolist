@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import TodoList from "./todolist.jsx";
+import List from "/workspaces/Kay-Bahr-Fetch-Todolist/src/Kay-Bahr-Todolist/src/js/component/list.jsx";
+import Footer from "/workspaces/Kay-Bahr-Fetch-Todolist/src/Kay-Bahr-Todolist/src/js/component/footer.jsx"
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -83,8 +84,9 @@ const App = () => {
 
   return (
     <div>
-      <TodoList todos={todos} />
+      <List todos={todos} />
       <button onClick={handleDeleteAll}>Clean all tasks</button>
+      <Footer />
     </div>
   );
 };
