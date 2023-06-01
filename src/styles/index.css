@@ -1,12 +1,103 @@
+body {
+    font-family: "Thasadith", sans-serif;
+}
 
-/* 
+h1 {
+    color: rgb(241, 196, 204);
+    font-size: 7vw;
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+ul {
+    list-style-type: none;
+}
 
-*/
+input {
+    border-bottom: 1px gray solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin: 0 auto;
+    width: 598px;
+    position: relative; 
+    padding-left: 50px;
+    font-size: 2vw;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+input:focus {
+    outline: none;
+}  
+
+li {
+    font-size: 2vw;
+    border: 1px gray solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-left: -32px;
+    padding-left: 47px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+button {
+    margin: 50px;
+}
+
+.toDoList {
+    border: 1px gray solid;
+    box-shadow: 0px 10px 12px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 600px;
+    position: relative;
+    text-align: left;
+}
+
+.list {
+    list-style: none;
+}
+  
+.closer {
+    display: flex;
+    float: right;
+    font-size: 2vw;
+    color: red;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+.footer {
+    border-top: none;
+    padding-left: 10px;
+    font-size: 1vw;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 457px;
+}
+
+.pageNext {
+    height: 5px;
+    max-width: 590px;
+    border-top: none;
+    border: 1px solid gray;
+    color: white;
+    box-shadow: 0px 2px 12px 1px rgba(0, 0, 0, 0.1);
+}
+
+.pageLast {
+    height: 5px;
+    max-width: 580px;
+    border-top: none;
+    border: 1px solid gray;
+    color: white;
+    margin-left: 5px;
+    box-shadow: 0px 10px 18px 8px rgba(0, 0, 0, 0.1);
+}
