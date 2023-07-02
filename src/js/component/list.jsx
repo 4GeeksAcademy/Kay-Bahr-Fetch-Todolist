@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Footer from "./footer.jsx";
 
-const List = ({ todos, onAddTask, onDeleteTask }) => {
+const List = () => {
   const [inputValue, setInputValue] = useState("");
+  const [items, setItems] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(-1);
-
-  useEffect(() => {
-    setInputValue(""); // Clear input value on component load
-  }, []);
-
-  if (!Array.isArray(todos)) {
-    todos = []; // Set todos to an empty array if it's not an array
-  }
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      onAddTask(inputValue);
+      setItems([...items, inputValue]);
       setInputValue("");
     }
   };
 
-  const itemCount = todos.length;
+  const itemCount = items.length;
 
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
@@ -31,12 +24,16 @@ const List = ({ todos, onAddTask, onDeleteTask }) => {
   };
 
   const handleRemove = (index) => {
-    onDeleteTask(index);
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
   };
 
   return (
     <div className="text-center">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Thasadith" />
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Thasadith" />
+      </head>
       <h1 className="text-center mt-5">todos</h1>
       <div className="toDoList">
         <input
@@ -47,9 +44,9 @@ const List = ({ todos, onAddTask, onDeleteTask }) => {
           value={inputValue}
         />
         <ul className="list">
-          {todos.map((todo, index) => (
+          {items.map((item, index) => (
             <li key={index} onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>
-              {todo.label}
+              {item}
               {hoveredIndex === index && (
                 <button className="closer" onClick={() => handleRemove(index)}>
                   x
@@ -60,9 +57,9 @@ const List = ({ todos, onAddTask, onDeleteTask }) => {
         </ul>
         <Footer itemCount={itemCount} />
       </div>
-      <div className="center">
-        <div className="pageNext">_________________________________________________</div>
-        <div className="pageLast">_________________________________________________</div>
+      <div className="center" id="pages">
+        <div className="pageNext">_________________________________________________________________________________________________</div>
+        <div className="pageLast">______________________________________________________________________________________________</div>
       </div>
     </div>
   );

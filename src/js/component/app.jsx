@@ -1,18 +1,27 @@
-import React, { useState, useEffect } from "react";
-import List from "/workspaces/Kay-Bahr-Fetch-Todolist/src/src/js/component/list.jsx";
+import React, { useEffect } from "react";
+import List, { todos, setTodos } from "./list.jsx";
 
 const App = () => {
-  const [todos, setTodos] = useState([]);
+
+  const handleGet = () => {
+    fetch("https://assets.breatheco.de/apis/fake/todos/user/kaybahr")
+      .then((response) => {
+        console.log(response.ok);
+        console.log(response.status);
+        console.log(response.text());
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
-    fetch("https://assets.breatheco.de/apis/fake/todos/user/kaybahr")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Data type:", typeof data);
-        setTodos(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    handleGet();
+  }, [])
 
   const handlePost = () => {
     fetch("https://assets.breatheco.de/apis/fake/todos/user/kaybahr", {
@@ -25,7 +34,8 @@ const App = () => {
       .then((response) => {
         console.log(response.ok);
         console.log(response.status);
-        return response.json(); // Parse the response directly here
+        console.log(response.text());
+        return response.json();
       })
       .then((data) => {
         console.log(data);
@@ -34,7 +44,7 @@ const App = () => {
         console.log(error);
       });
   };
-  
+
   const handlePut = () => {
     fetch("https://assets.breatheco.de/apis/fake/todos/user/kaybahr", {
       method: "PUT",
@@ -46,7 +56,8 @@ const App = () => {
       .then((response) => {
         console.log(response.ok);
         console.log(response.status);
-        return response.json(); // Parse the response directly here
+        console.log(response.text());
+        return response.json();
       })
       .then((data) => {
         console.log(data);
@@ -54,9 +65,9 @@ const App = () => {
       .catch((error) => {
         console.log(error);
       });
-  };  
+  };
 
-  const handleDeleteAll = () => {
+  const handleDelete = () => {
     fetch("https://assets.breatheco.de/apis/fake/todos/user/kaybahr", {
       method: "DELETE",
       headers: {
@@ -78,23 +89,11 @@ const App = () => {
       });
   };
 
-  const handleAddTask = (task) => {
-    setTodos((prevTodos) => [...prevTodos, task]);
-    handlePost();
-  };  
-
-  const handleDeleteTask = (index) => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
-    handlePut();
-  };
-
   return (
     <div>
-      <List todos={todos} onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} />
       <div className="text-center">
-        <button onClick={handleDeleteAll}>Clean all tasks</button>
+        <List/>
+        <button onClick={handleDelete} className="delete-all">Clean all tasks</button>
       </div>
     </div>
   );
