@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Footer from "./footer.jsx";
 
+export let items = [];
+export const setItems = (newItems) => {
+  items = newItems;
+};
+
 const List = () => {
   const [inputValue, setInputValue] = useState("");
   const [items, setItems] = useState([]);
