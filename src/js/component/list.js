@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Footer from "./footer.jsx";
+import Footer from "./footer.js";
 
 export let items = [];
 export const setItems = (newItems) => {
